@@ -102,3 +102,11 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
+# Folders
+page_datastore
+pages
+
+# files
+*.zip
