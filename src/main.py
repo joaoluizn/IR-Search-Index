@@ -3,6 +3,19 @@ import os
 from utils import *
 import json
 
+
+class ReverseIndex:
+    def __init__(self,path_to_index):
+        self.path = path_to_index
+        self.index = self.load_index()
+
+    def load_index(self):
+        with open(self.path) as inp_file:
+            return json.loads(inp_file.read())
+
+    def get_vocabulary_size(self):
+        return len(self.index())
+
 def get_single_page_text(page_data):
     with open(os.path.join('filtered_page_datastore', page_data.get('html'))) as page:
         return get_page_text(page.read())
@@ -64,4 +77,9 @@ def create_reverse_index():
 if __name__ == "__main__":
     # extract page_datastore src folder and run the following"
     # filter_pages_from_datastore()
-    create_reverse_index()
+    # create_reverse_index()
+
+    index_file = "single_term_index_tuple.json"
+    reverse_index = ReverseIndex(index_file)
+    print(reverse_index.index)
+
