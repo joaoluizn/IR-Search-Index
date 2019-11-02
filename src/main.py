@@ -2,6 +2,18 @@ from datastore import load_pages_to_datastore, filter_pages_from_datastore
 from reverse_index import create_reverse_index, ReverseIndex
 import argparse
 
+from flask import Flask
+app = Flask(__name__)
+reverse_index = None
+
+@app.route('/')
+def hello_world():
+    return 'Hello, Index!!'
+
+@app.route('/search')
+def search_game():
+    return 'Search game stub endpoint.  Index len: {}'.format(len(reverse_index.index))
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
@@ -30,3 +42,4 @@ if __name__ == "__main__":
             create_reverse_index()
     else:
         reverse_index = ReverseIndex(args.reverse_index_file)
+        app.run(debug=True)
