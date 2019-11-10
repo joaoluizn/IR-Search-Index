@@ -15,7 +15,7 @@ def create_folder(folder_name):
     if not os.path.isdir(folder_name):
         os.mkdir(folder_name)
 
-def save_reverse_index_to_json(index):
-    with open('single_term_index.json', 'w+') as reverse:
+def save_reverse_index_to_json(index, name="single_term_index.json"):
+    with open(name, 'w+') as reverse:
         reverse.write(json.dumps(index, indent=4, ensure_ascii=True))
 
